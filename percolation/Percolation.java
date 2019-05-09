@@ -1,10 +1,16 @@
+import java.util.*;
+
 public class Percolation {
 
-   private int[] array1;
    private int[][] grid;
 
    // create n-by-n grid, with all sites blocked
    public Percolation(int n) {
+        grid = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
+            grid[i] = new int[n];
+        }
 
    }
 
@@ -33,8 +39,17 @@ public class Percolation {
       return false;
    }
 
+   public String toString() {
+       String result = "";
+       for (int i = 0; i < grid.length; i++) {
+           result += Arrays.toString(grid[i]) + "\n";
+       }
+       return result;
+   }
+
    // test client (optional)
    public static void main(String[] args) {
-      System.out.println("Hello, world!");
+      Percolation perc = new Percolation(4);
+      System.out.println(perc);
    }
 }
