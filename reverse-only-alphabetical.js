@@ -1,4 +1,5 @@
-// You are given a string that contains alphabetical characters (a - z, A - Z) and some other characters ($, !, etc.).
+// You are given a string that contains alphabetical characters (a - z, A - Z)
+// and some other characters ($, !, etc.).
 // For example, one input may be:
 
 // 'sea!$hells3'
@@ -9,29 +10,15 @@
 // // 'sll!$ehaes3'
 
 const reverseOnlyAlphabetical = (str) => {
-    let reverse = str.match(/[a-z]/ig);
+    let alphaChars = str.match(/[a-z]/ig);
+    let result = str.split('');
 
-    for (let i = 0; i < reverse.length / 2; i++) {
-        if (i < reverse.length / 2) {
-            let temp = reverse[i];
-            reverse[i] = reverse[reverse.length - 1 - i];
-            reverse[reverse.length - 1 - i] = temp;
-        }
-    }
-
-    let result = '';
-
-    let i = 0;
-    let j = 0;
-    while (i < str.length || j < reverse.length) {
-        if (reverse.indexOf(str[i]) === -1) {
-            result += str[i];
-            i++;
+    for (let i = 0; i < result.length; i++) {
+        if (result[i].toLowerCase() === result[i].toUpperCase()) {
+            continue;
         } else {
-            result += reverse[j];
-            j++;
-            i++;
+            result[i] = alphaChars.pop();
         }
     }
-    return result;
+    return result.join('');
 }
