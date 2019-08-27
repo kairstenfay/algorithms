@@ -6,14 +6,12 @@
 // the strings are anagrams of each other?
 
 const isAnagram = (str1, str2) => {
-    let stack = str1.toLowerCase().split('');
-    let array = str2.toLowerCase().split('');
+    let strings = [str1, str2].map((string) => {
+        string = string.toLowerCase();
+        return string.split('').sort().join('');
+    });
 
-    while (array.length > 1) {
-        let index = array.indexOf(stack.pop());
-
-        if (index === -1) return false;
-        array.splice(index, 1);
-    }
-    return array[0] == stack[0];
+    return strings[0] === strings[1];
 }
+
+console.log(isAnagram('cinema', 'iceman'));
