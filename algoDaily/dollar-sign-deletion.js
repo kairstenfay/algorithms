@@ -16,22 +16,20 @@
 //   return;
 // }
 
-const getFinalStr = (array) => {
+const getFinalStr = (string) => {
     let result = [];
 
-    while (array.length > 0) {
-        const char = array.splice(0, 1);
-
-        if (String(char) === '$') result.pop();
-        else result = result.concat(char);
+    for (let i = 0; i < string.length; i++) {
+        if (string[i] === '$') result.pop();
+        else result.push(string[i]);
     }
 
     return result.join('');
 }
 
 const isDollarDeleteEqual = (arr) => {
-    let firstString = getFinalStr([...arr[0]]);
-    let secondString = getFinalStr([...arr[1]]);
-
-    return firstString === secondString;
+    const strings = arr.map((string) => getFinalStr(string));
+    return strings.every((string) => string === strings[0]);
 }
+
+console.log(isDollarDeleteEqual(["f$st", "st"]));
