@@ -1,4 +1,4 @@
-// We have an array of length 2 * n (even length) that consists of random integers.
+// We have an numsay of length 2 * n (even length) that consists of random integers.
 
 // [1, 3, 2, 6, 5, 4]
 
@@ -13,20 +13,14 @@
 
 // Note that negative numbers may also be included.
 
-const maxOfMinPairs = (arr) => {
-    if (arr.length === 0) return;
+const maxOfMinPairs = (nums) => {
+    if (nums.length === 0) return;
 
-    let sortedArray = arr.sort();
+    let sortedArray = nums.sort();
+    result = sortedArray[0];
 
-    let pairs = [];
-    while (sortedArray.length > 0) {
-        pairs.push(sortedArray.splice(0, 2));
-    }
-
-    let result = Math.min(pairs[0][0], pairs[0][1]);
-
-    for (let i = 1; i < pairs.length; i++) {
-        result += Math.min(pairs[i][0], pairs[i][1]);
+    for (let i = 2; i < sortedArray.length; i += 2) {
+        result += sortedArray[i];
     }
 
     return result;
