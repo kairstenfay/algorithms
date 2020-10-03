@@ -18,16 +18,21 @@
 // Can you do it without sorting?
 
 const missingInUnsorted = (arr, lowerBound, upperBound) => {
-    const slots = upperBound - lowerBound + 1;
-    const zeroIndexed = 0 - lowerBound;
-    let nums = [...Array(slots).keys()];
+    let sum = arr[0];
+    for (let i = 1; i < arr.length; i++) { sum += arr[i]; }
 
-    for (let num of arr) {
-        nums[num + zeroIndexed] = undefined;
-    }
+    let upperSum = gaussianSum(upperBound);
+    let lowerSum = gaussianSum(lowerBound - 1);
 
-    const missingNumber = nums.find((n) => { return n !== undefined });
-    return missingNumber - zeroIndexed;
+    let range = upperBound - lowerBound + 1;
+    let slots = [...Array(range).keys()];
+    const zeroIndex = 0 - lowerBound;
+
+
+}
+
+const gaussianSum = (n) => {
+    return n * (n + 1) / 2;
 }
 
 console.log(missingInUnsorted([ 2, 5, 1, 4, 9, 6, 3, 7 ], 1, 9));

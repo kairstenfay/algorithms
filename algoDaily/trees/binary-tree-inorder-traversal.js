@@ -18,16 +18,35 @@
 
 // Follow up: you'll likely get the recursive solution first, could you do it iteratively?
 
+// function inorderTraversal(root) {
+//     return _inorderTraversal(root, []);
+// }
+
+// function _inorderTraversal(node, nodesSoFar) {
+//     if (!node.val) return nodesSoFar;
+
+//     if (node.left) _inorderTraversal(node.left, nodesSoFar);
+//     nodesSoFar.push(node.val);
+//     if (node.right) _inorderTraversal(node.right, nodesSoFar);
+
+//     return nodesSoFar;
+// }
+
 function inorderTraversal(root) {
-    return _inorderTraversal(root, []);
-}
+    if (!root) return [];
 
-function _inorderTraversal(node, nodesSoFar) {
-    if (!node.val) return nodesSoFar;
+    let nodesSoFar = [];
+    let prev = null;
+    let current = root;
 
-    if (node.left) _inorderTraversal(node.left, nodesSoFar);
-    nodesSoFar.push(node.val);
-    if (node.right) _inorderTraversal(node.right, nodesSoFar);
+    while (current.left) {
+        let temp = current;
+        current = current.left;
+        prev = temp;
+    }
+    nodesSoFar.push(current.val);
+    current = prev;
+    
 
     return nodesSoFar;
 }
