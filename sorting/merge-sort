@@ -45,17 +45,17 @@ def merge(left: List[int], right: List[int]) -> List[int]:
     while left and right:
         if left[0] < right[0]:
             result.append(left[0])
-            left.remove(left[0])
+            del left[0]
         else:
             result.append(right[0])
-            right.remove(right[0])
+            del right[0]
 
     while left:
         result.append(left[0])
-        left.remove(left[0])
+        del left[0]
     while right:
         result.append(right[0])
-        right.remove(right[0])
+        del right[0]
 
     return result
 
